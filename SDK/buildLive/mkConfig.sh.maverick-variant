@@ -41,7 +41,7 @@ makeConfig()
 	configString="$configString --debian-installer-gui disabled"
 	configString="$configString --win32-loader disabled"
 
-	configString="$configString --initramfs live-initramfs"
+	configString="$configString --initramfs live-boot"
 
 	if [ -n "$APT_HTTP_PROXY" ]; then
 		configString="$configString --apt-http-proxy $APT_HTTP_PROXY"
