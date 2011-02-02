@@ -50,6 +50,8 @@ makeConfig()
 		configString="$configString --apt-ftp-proxy $APT_FTP_PROXY"
 	fi
 
+	# configString="$configString --interactive shell"
+
 	configString="$configString --mirror-bootstrap http://archive.ubuntu.com/ubuntu/"
 	configString="$configString --mirror-binary http://archive.ubuntu.com/ubuntu/"
 	configString="$configString --mirror-chroot http://archive.ubuntu.com/ubuntu/"
