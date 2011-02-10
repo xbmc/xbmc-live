@@ -1,0 +1,4 @@
+This is the main repo for XBMC-Live. It has been split out of mainline to allow for a separate release schedule.
+
+See the packaging repo for ppa scripts: https://github.com/xbmc/xbmc-packaging
+The XBMC mainline repo is available here: https://github.com/xbmc/
