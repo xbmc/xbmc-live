@@ -24,7 +24,7 @@ mkdir -p $WORKPATH/buildLive/Files/chroot_local-packages &> /dev/null
 
 if ! ls $WORKPATH/plymouth-theme-xbmc-logo*.deb > /dev/null 2>&1; then
 	cd $WORKPATH
-	svn checkout https://xbmc.svn.sourceforge.net/svnroot/xbmc/trunk/tools/XBMCLive/PlymouthThemes/plymouth-theme-xbmc-logo
+	cp -rf ../../PlymouthThemes/* .
 	if [ "$?" -ne "0" ]; then
 		echo "Error retrieving Plymouth theme files, exiting..."
 		exit 1
