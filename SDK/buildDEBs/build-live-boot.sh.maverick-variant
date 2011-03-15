@@ -36,9 +36,9 @@ if ! ls live-boot_*.deb > /dev/null 2>&1 ; then
 		    cd live-boot
 		    gitMinorVersion=$(git --version | cut -d" " -f3 | cut -d. -f2)
 		    if [ $gitMinorVersion -eq "6" ] ; then
-			    git checkout -b 3.0_a14-1 debian/3.0_a14-1
+			    git checkout -b 3.0_a16-1 debian/3.0_a16-1
 		    else
-			    git checkout debian/3.0_a14-1
+			    git checkout debian/3.0_a16-1
 		    fi
 
 		    cd ..
