@@ -102,7 +102,12 @@ if ! which lb > /dev/null ; then
 			fi
 
 			pushd live-build > /dev/null
-			git checkout -b debian-old-2.0 remotes/origin/debian-old-2.0
+			gitMinorVersion=$(git --version | cut -d" " -f3 | cut -d. -f2)
+			if [ $gitMinorVersion -eq "6" ] ; then
+			    git checkout -b debian/2.0.12-2 debian/2.0.12-2
+			else
+			    git checkout debian/2.0.12-2
+			fi
 			popd > /dev/null
 
 			# Saved, to avoid cloning for multiple builds
