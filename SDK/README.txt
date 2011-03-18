@@ -40,3 +40,15 @@ Cronological flow of operations:
                                          |      +-------------------------+
                                          +------| ./buildLive/mkConfig.sh |
                                                 +-------------------------+
+
+
+Main script detailed sequence of operations (build.sh):
+
+1. Check for required packages
+2. Delete previous build objects (workarea, binary.*) if they exist
+3. Create a new workarea, copying the entire SDK
+4. If live-build is not installed, clone it from upstream repo and set environment accordingly
+5. Execute any specified build hooks
+6. Build any DEB/UDEB packages required for the Live build
+7. Copy any built-downloaded files into buildLive directory tree for the "real" Live build
+8. Perform Live build using live-build with the preconfigured, ad-hoc config tree
