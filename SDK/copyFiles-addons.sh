@@ -39,6 +39,6 @@ for k in "${ADDONSLIST[@]}" ; do
 		    echo "Needed package ($k) not found, exiting..."
 		    exit 1
 	    fi
-	    unzip -q $latestPackage -d $WORKPATH/buildLive/Files/chroot_local-includes/usr/share/xbmc/addons
 	fi
+	unzip -q $latestPackage -d $WORKPATH/buildLive/Files/chroot_local-includes/usr/share/xbmc/addons
 done
