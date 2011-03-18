@@ -64,11 +64,6 @@ cleanup()
 trap 'cleanup' EXIT TERM INT
 
 
-if [ -z $VARIANTNAME ]; then
-	# Get host codename by default
-	export VARIANTNAME=$(cat /etc/lsb-release | grep CODENAME | cut -d= -f2)
-fi
-
 THISDIR=$(pwd)
 WORKDIR=workarea
 WORKPATH=$THISDIR/$WORKDIR
@@ -115,13 +110,6 @@ if ! which lb > /dev/null ; then
 		else
 			tar xf live-build.tar  > /dev/null 2>&1
 		fi
-
-		# Fix for missing directory for Ubuntu's d-i, to be removed when fixed upstream!
-		cd live-build/data/debian-cd
-		if [ ! -h $VARIANTNAME ]; then
-			ln -s maverick $VARIANTNAME
-		fi
-		cd $WORKPATH/Tools
 	fi
 
 	LB_HOMEDIR=$WORKPATH/Tools/live-build
@@ -132,22 +120,10 @@ if ! which lb > /dev/null ; then
 	cd $THISDIR
 fi
 
-echo "Start building, using Ubuntu $VARIANTNAME repositories ..."
+echo "Start building..."
 echo ""
 
 cd $WORKPATH
-
-# Put in place distro variants, remove other variants
-find ./  -name "*-variant" | \
-while read i; do
-#	if [[ $i =~ $VARIANTNAME-variant ]]; then
-	if [ -n "$(echo $i | grep $VARIANTNAME-variant)" ]; then
-		j=${i%%.$VARIANTNAME-variant}
-		mv $i $j
-	else
-		rm -rf $i
-	fi
-done
 
 # Execute hooks if env variable is defined
 if [ -n "$SDK_BUILDHOOKS" ]; then

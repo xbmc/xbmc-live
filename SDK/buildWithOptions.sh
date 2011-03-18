@@ -24,7 +24,7 @@ SDK_BUILDHOOKS=""
 
 # getopt-parse.bash
 
-TEMP=$(getopt -o snp:ulkgiv:h:xP --long xbmc-svn,nvidia-only,proxy:,usb-image,live-only,keep-workarea,grub2,intel-only,variant:,hook:,x-swat,proposed -- "$@")
+TEMP=$(getopt -o snp:ulkgih:xP --long xbmc-svn,nvidia-only,proxy:,usb-image,live-only,keep-workarea,grub2,intel-only,hook:,x-swat,proposed -- "$@")
 eval set -- "$TEMP"
 
 while true
@@ -64,15 +64,6 @@ do
 		echo "Enable option: Intel support only"
 		export SDK_BUILDHOOKS="$SDK_BUILDHOOKS ./buildHook-intelOnly.sh"
 		shift
-		;;
-	-v|--variant)
-		case "$2" in
-			"") echo "No variant name provided, exiting"; exit ;;
-			*)  VARIANTNAME=$2;;
-		esac
-		echo "Enable option: Build variant $VARIANTNAME"
-		export VARIANTNAME
-		shift 2
 		;;
 	-h|--hook)
 		case "$2" in
