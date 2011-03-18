@@ -156,24 +156,6 @@ if [ -f $WORKPATH/buildDEBs/build.sh ]; then
 fi
 
 #
-# Build binary drivers
-#
-if [ -f $WORKPATH/buildBinaryDrivers/build.sh ]; then
-	echo ""
-	echo "-----------------------"
-	echo "Build binary drivers..."
-	echo "-----------------------"
-	echo ""
-
-	cd $WORKPATH/buildBinaryDrivers
-	./build.sh
-	if [ "$?" -ne "0" ]; then
-		exit 1
-	fi
-	cd $THISDIR
-fi
-
-#
 # Copy all needed files in place for the real build
 #
 
