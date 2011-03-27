@@ -37,7 +37,7 @@ makeConfig()
 	configString="$configString --bootloader grub2"
 
 	configString="$configString --debian-installer live"
-        configString="$configString --debian-installer-preseedfile preseed.cfg"
+	configString="$configString --debian-installer-preseedfile preseed.cfg"
 	configString="$configString --debian-installer-gui disabled"
 	configString="$configString --win32-loader disabled"
 
