@@ -18,10 +18,9 @@
 #  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 #  http://www.gnu.org/copyleft/gpl.html
 
-
-echo ""
-echo "Retrieving CrystalHD drivers..."
-echo ""
+echo "--------------------------------"
+echo "Retrieving CrystalHD drivers... "
+echo "--------------------------------"
 
 mkdir -p $WORKPATH/buildLive/Files/chroot_local-includes/root &> /dev/null
 

@@ -18,7 +18,9 @@
 #  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 #  http://www.gnu.org/copyleft/gpl.html
 
-echo "Retrieving addons..."
+echo "--------------------------"
+echo "Retrieving addons...      "
+echo "--------------------------"
 
 repoURL="http://mirrors.xbmc.org/addons/dharma/"
 ADDONSLIST=(script.bootable.disk.wizard script.rss.editor script.xbmc.audio.mixer)

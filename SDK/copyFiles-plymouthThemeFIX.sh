@@ -20,6 +20,10 @@
 
 # Temporary fix until package in PPA is created
 
+echo "--------------------------------"
+echo "Retrieving Plymouth theme...    "
+echo "--------------------------------"
+
 mkdir -p $WORKPATH/buildLive/Files/chroot_local-packages &> /dev/null
 
 if ! ls $WORKPATH/plymouth-theme-xbmc-logo*.deb > /dev/null 2>&1; then
