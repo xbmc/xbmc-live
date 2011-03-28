@@ -183,5 +183,11 @@ cd $WORKPATH/buildLive
 ./build.sh
 cd $THISDIR
 
-mv $WORKPATH/buildLive/binary.* .
-chmod 777 binary.*
+#
+# Copy binary files from workarea
+#
+
+if [ -f $WORKPATH/buildLive/binary.iso ]; then
+	mv $WORKPATH/buildLive/binary.* .
+	chmod 777 binary.*
+fi
