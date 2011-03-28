@@ -22,4 +22,4 @@ set -x
 
 cp chroot/usr/share/grub/unicode.pf2 binary/boot/grub/
 
-sleep 1000
+sleep 10
