@@ -18,5 +18,10 @@
 #  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 #  http://www.gnu.org/copyleft/gpl.html
 
-mv binary/live/initrd.img-* binary/live/initrd.img
-mv binary/live/vmlinuz-* binary/live/vmlinuz
+
+# exit building when multiple kernel versions are found
+COUNT=`ls -1 /lib/modules | wc -l`
+if [ "$COUNT" -ne "1" ]; then
+        echo "Different kernel versions detected, exiting!"
+	false
+fi
