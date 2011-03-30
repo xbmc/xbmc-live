@@ -6,7 +6,7 @@ acpi acpi-support
 alsa-utils hal lirc pm-utils psmisc 
 fakeroot
 grub-pc
-xorg xinit fluxbox
+xorg xinit fluxbox uxlaunch
 mesa-utils libgl1-mesa-dri xlibmesa-glu
 genext2fs
 cpufrequtils
