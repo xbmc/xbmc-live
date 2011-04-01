@@ -20,11 +20,11 @@
 
 
 cat > $WORKPATH/buildLive/Files/chroot_sources/x-swat.list.chroot << EOF
-deb http://ppa.launchpad.net/ubuntu-x-swat/x-updates/ubuntu maverick main 
+deb http://ppa.launchpad.net/ubuntu-x-swat/x-updates/ubuntu natty main 
 EOF
 
 cat > $WORKPATH/buildLive/Files/chroot_sources/x-swat.list.binary << EOF
-deb http://ppa.launchpad.net/ubuntu-x-swat/x-updates/ubuntu maverick main 
+deb http://ppa.launchpad.net/ubuntu-x-swat/x-updates/ubuntu natty main 
 EOF
 
 if [ ! -f $WORKPATH/x-swat.key ] ; then
