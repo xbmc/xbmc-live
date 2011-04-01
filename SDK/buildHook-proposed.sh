@@ -20,9 +20,9 @@
 
 
 cat > $WORKPATH/buildLive/Files/chroot_sources/proposed.list.chroot << EOF
-deb http://archive.ubuntu.com/ubuntu/ maverick-proposed main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ natty-proposed main restricted universe multiverse
 EOF
 
 cat > $WORKPATH/buildLive/Files/chroot_sources/proposed.list.binary << EOF
-deb http://archive.ubuntu.com/ubuntu/ maverick-proposed main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ natty-proposed main restricted universe multiverse
 EOF
