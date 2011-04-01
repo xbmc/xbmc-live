@@ -1,3 +1,9 @@
+plymouth-theme-xbmc-logo (0.2) lucid; urgency=low
+
+  * Properly debianised package, credits to eXcyle <eXcyle@eXcyle.nl>
+
+ -- Luigi Capriotti <l.capriotti@xbmc.org>  Fri, 1 Apr 2011 10:00:00 +0100
+
 plymouth-theme-xbmc-logo (0.1) lucid; urgency=low
 
   * Initial release, source provided by eXcyle <eXcyle@eXcyle.nl>

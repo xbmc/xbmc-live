@@ -1,0 +1,86 @@
+XBMC is downloaded from http://xbmc.org/.
+SVN snapshots are generated from
+https://xbmc.svn.sourceforge.net/svnroot/xbmc/trunk.
+
+Main Contact: "Team-XBMC" <team at xbmc dot org>
+
+Upstream Authors:
+
+    Andreas Setterlind [Gamester17]
+    Staffan Lindberg [pike]
+    Arne Morten Kvarving [cptspiff]
+    Anoop Menon [d4rk]
+    Joakim Plate [elupus]
+    Jonathan Marshall [jmarshall]
+    Tobias Arrskog [Topfs2]
+    Roee Vulkan [vulkanr]
+    Winfried Soltys [WiSo]
+    Yuval Tal [yuvalt]
+    John W Vanderbeck [agathorn]
+    Trent Nelson [AlTheKiller]
+    Andres Mejia [ceros]
+    Gunnar Norin [blittan]
+    Dean Ross Parry [C-Quel]
+    Sylvain Rebaud [c0diq]
+    Martin van Beurden [chadoe]
+    Scott Davilla [davilla]
+    Stephan Diederich [MaestroDD]
+    Benjamin Bertrand [Beenje]
+    Benjamin Dickgiesser [DonJ]
+    [GeminiServer]
+    Christian Granqvist [Granqvist]
+    Dave [kraqh3d]
+    Luigi Capriotti [l.capriotti]
+    Sean [malloc]
+    Kyle Hill [monkeyman]
+    [MrC]
+    [nad]
+    [nuka1195]
+    Vincent Blackwell-Price [Voinage]
+    Robert Parris [rwparris2]
+    Sigurdur H. Olafsson [sho]
+    Alasdair Campbell [Alcoheca]
+    Georgy Yunaev [oldnemesis]
+    Chris [phi2039]
+    Bob [bobo1on1]
+    David Allonby [motd2k]
+    Robert Rudd [Rudd]
+    Eric G [Tslayer]
+    Amund Scharning [tut-ankh-amon]
+    Matthias Kortstiege [VDRfan]
+    Daniel Mehrwald [AreaScout]
+    Oumar Aziz Outtara [wattazoum]
+    Chris Haley [CHI3f]
+    [Jezz_X]
+    [Smokehead]
+    Darren [Bizzeh]
+    Marc [Bobbin007]
+    Richard [Butcher]
+    Jan-Willem [Darkie]
+    Chris Branson [forza]
+    [Kreet]
+    [Ysbox]
+    Erwin Beckers [Frodo]
+    Albert Griscti-Soler [RUNTiME]
+    Phil Burr [d7o3g4q] (a.k.a. Duo Egaq)
+    Mathias Mahling [chokemaniac]
+
+Credits:
+
+XBMC - Cross-platform Media Center
+<http://xbmc.org/>
+
+    Copyright © 2005-2009 Team XBMC http://www.xbmc.org
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
