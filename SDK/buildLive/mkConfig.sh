@@ -23,7 +23,7 @@ makeConfig()
 
 	configString=""
 	configString="$configString --mode ubuntu"
-	configString="$configString --distribution natty"
+	configString="$configString --distribution maverick"
 	configString="$configString --architecture i386"
 	configString="$configString --mirror-chroot-security http://security.ubuntu.com/ubuntu/"
 	configString="$configString --mirror-binary-security http://security.ubuntu.com/ubuntu/"

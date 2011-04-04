@@ -51,6 +51,12 @@ if ! ls live-boot_*.deb > /dev/null 2>&1 ; then
 	fi
 
 	#
+	# Patch to allow live-boot script not to generate an error when using grep -w, not supported by maverick's busybox
+	# (we can accept the script being overzaelous, see http://live.debian.net/gitweb?p=live-boot.git;a=commitdiff;h=34f3c0791bdffd64a3b7d4167882a5d308c6292c)
+	#
+	sed -i -e "s/grep -q -w/grep -q/g" $THISDIR/live-boot/scripts/live-helpers
+
+	#
 	# (Ugly) Patch to allow FAT boot disk to be mounted RW
 	#	discussions is in progress with upstream developers
 	#
