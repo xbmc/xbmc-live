@@ -28,5 +28,4 @@ plymouth-theme-xbmc-logo
 fglrx fglrx-amdcccle
 nvidia-current libvdpau1
 wpasupplicant wireless-tools
-linux-backports-modules-alsa-natty-generic linux-backports-modules-wireless-natty-generic
 avahi-daemon
