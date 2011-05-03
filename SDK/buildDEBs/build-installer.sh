@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 #      Copyright (C) 2005-2008 Team XBMC
 #      http://www.xbmc.org
@@ -27,26 +27,19 @@ if ! ls xbmclive-installhelpers_*.udeb > /dev/null 2>&1 ; then
 fi
 
 #
-# Retrieve live_installer sources from Ubuntu's repositories
+# Retrieve live_installer package from Ubuntu's repositories
 #
 if ! ls live-installer*.udeb > /dev/null 2>&1 ; then
-	echo "Retrieving live_installer sources..."
+	echo "Retrieving live_installer package..."
 
 	repoURL="http://archive.ubuntu.com/ubuntu/pool/main/l/live-installer/"
 
-	latestPackage=$(curl -x "" -s -f $repoURL | grep -o 'live[^"]*.tar.gz' | sort -r -k2 -t_ -n | head -n 1)
+	latestPackage=$(curl -x "" -s -f $repoURL | grep -o 'live[^"]*.udeb' | sort -r -k2 -t_ -n | head -n 1)
 	echo " -  Latest package: $latestPackage"
 	wget -q "$repoURL$latestPackage"
 	if [ "$?" -ne "0" ] || [ ! -f $latestPackage ] ; then
 		echo "Needed package (1) not found, exiting..."
 		exit 1
 	fi
-	tar xf $latestPackage
-
-	cd live-installer*
-	dpkg-buildpackage -rfakeroot -b -uc -us
-	if [ "$?" -ne "0" ]; then
-		exit 1
-	fi
-	cd ..
 fi
+

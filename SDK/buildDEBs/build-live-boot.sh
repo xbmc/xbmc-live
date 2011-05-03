@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 #      Copyright (C) 2005-2008 Team XBMC
 #      http://www.xbmc.org
@@ -22,44 +22,20 @@
 THISDIR=$(pwd)
 
 if ! ls live-boot_*.deb > /dev/null 2>&1 ; then
-	echo "Making live-boot..."
+	echo "Retrieving live-boot package..."
 
-	if [ ! -d live-boot ]; then
-	    #if you use git <= 1.6, then use: git clone git://live.debian.net/git/live-boot.git && git checkout -b debian-old-1.0 origin/debian-old-1.0
-	    #if you use git >= 1.7, then use: git clone git://live.debian.net/git/live-boot.git && git checkout debian-old-1.0
-	    if [ ! -f live-boot.tar ]; then
-		    git clone git://live.debian.net/git/live-boot.git
-		    if [ "$?" -ne "0" ]; then
-			    exit 1
-		    fi
+	latestPackage1="live-boot_3.0~a16-1_all.deb"
+	latestPackage2="live-boot-initramfs-tools_3.0~a16-1_all.deb"
 
-		    cd live-boot
-		    gitMinorVersion=$(git --version | cut -d" " -f3 | cut -d. -f2)
-		    if [ $gitMinorVersion -eq "6" ] ; then
-			    git checkout -b 3.0_a16-1 debian/3.0_a16-1
-		    else
-			    git checkout debian/3.0_a16-1
-		    fi
-
-		    cd ..
-
-		    # Saved, to avoid cloning for multiple builds
-		    tar cf live-boot.tar live-boot  > /dev/null 2>&1
-	    else
-		    tar xf live-boot.tar  > /dev/null 2>&1
-	    fi
-	fi
-
-	#
-	# (Ugly) Patch to allow FAT boot disk to be mounted RW
-	#	discussions is in progress with upstream developers
-	#
-	sed -i -e "/\"\${devname}\" \${mountpoint}/s/-o ro,noatime /\$([ "\$fstype" = \"vfat\" ] \&\& echo \"-o rw,noatime,umask=000\" \|\| echo \"-o ro,noatime\") /" $THISDIR/live-boot/scripts/live
-
-	cd $THISDIR/live-boot
-	dpkg-buildpackage -rfakeroot -b -uc -us
-	if [ "$?" -ne "0" ]; then
+	wget -q "http://ftp.debian.org/debian/pool/main/l/live-boot/$latestPackage1"
+	if [ "$?" -ne "0" ] || [ ! -f $latestPackage1 ] ; then
+		echo "Needed package (1) not found, exiting..."
 		exit 1
 	fi
-	cd $THISDIR
+
+	wget -q "http://ftp.debian.org/debian/pool/main/l/live-boot/$latestPackage2"
+	if [ "$?" -ne "0" ] || [ ! -f $latestPackage2 ] ; then
+		echo "Needed package (2) not found, exiting..."
+		exit 1
+	fi
 fi
