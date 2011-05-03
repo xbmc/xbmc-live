@@ -25,3 +25,15 @@ if [ "$COUNT" -ne "1" ]; then
         echo "Different kernel versions detected, exiting!"
 	false
 fi
+
+# Temporary fixup for bug #556653
+# see https://bugs.launchpad.net/ubuntu/+source/nvidia-graphics-drivers/+bug/556653
+
+kernelVersion=$(ls /lib/modules)
+
+for k in $(ls /boot | grep initrd.img) ; do
+	echo $k
+	if [ ! "$k" = "initrd.img-$kernelVersion" ] ; then
+		rm /boot/$k
+	fi
+done
