@@ -7,7 +7,7 @@ alsa-utils hal lirc pm-utils psmisc
 fakeroot
 grub-pc
 xorg xinit fluxbox uxlaunch
-mesa-utils libgl1-mesa-dri xlibmesa-glu
+mesa-utils
 genext2fs
 cpufrequtils
 hts-tvheadend
