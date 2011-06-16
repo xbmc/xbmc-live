@@ -24,8 +24,8 @@ THISDIR=$(pwd)
 if ! ls live-boot_*.deb > /dev/null 2>&1 ; then
 	echo "Retrieving live-boot package..."
 
-	latestPackage1="live-boot_3.0~a17-1_all.deb"
-	latestPackage2="live-boot-initramfs-tools_3.0~a17-1_all.deb"
+	latestPackage1="live-boot_3.0~a18-1_all.deb"
+	latestPackage2="live-boot-initramfs-tools_3.0~a18-1_all.deb"
 
 	wget -q "http://ftp.debian.org/debian/pool/main/l/live-boot/$latestPackage1"
 	if [ "$?" -ne "0" ] || [ ! -f $latestPackage1 ] ; then
