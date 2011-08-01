@@ -24,16 +24,22 @@ THISDIR=$(pwd)
 if ! ls live-boot_*.deb > /dev/null 2>&1 ; then
 	echo "Retrieving live-boot package..."
 
-	latestPackage1="live-boot_3.0~a19-1_all.deb"
-	latestPackage2="live-boot-initramfs-tools_3.0~a19-1_all.deb"
+	repoURL="http://live.debian.net/archive/packages/live-boot/"
+	if [ -z "$SDK_USELATESTDEBIANLIVEFILES" ]; then
+	    pkgVersion="3.0~a18-1"
+	else
+	    pkgVersion=$(curl -x "" -s -f $repoURL | grep -v orig | grep 3.0 | tail -1 | grep -o '"3.0~[^\/]*' | sed -e "s/\"//g")
+	fi
+	latestPackage1="live-boot_${pkgVersion}_all.deb"
+	latestPackage2="live-boot-initramfs-tools_${pkgVersion}_all.deb"
 
-	wget -q "http://ftp.debian.org/debian/pool/main/l/live-boot/$latestPackage1"
+	wget -q "$repoURL$pkgVersion/$latestPackage1"
 	if [ "$?" -ne "0" ] || [ ! -f $latestPackage1 ] ; then
 		echo "Needed package (1) not found, exiting..."
 		exit 1
 	fi
 
-	wget -q "http://ftp.debian.org/debian/pool/main/l/live-boot/$latestPackage2"
+	wget -q "$repoURL$pkgVersion/$latestPackage2"
 	if [ "$?" -ne "0" ] || [ ! -f $latestPackage2 ] ; then
 		echo "Needed package (2) not found, exiting..."
 		exit 1

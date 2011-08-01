@@ -84,9 +84,9 @@ do
                 export SDK_BUILDHOOKS="$SDK_BUILDHOOKS ./buildHook-proposed.sh"
                 shift
 		;;
-	-N|--newestlivebuild)
-		echo "Enable option: use latest live_build"
-		export SDK_USELATESTLIVEBUILD=1
+	-N|--newestdebianlive)
+		echo "Enable option: use latest debian_live files"
+		export SDK_USELATESTDEBIANLIVE=1
 		shift
 	-p|--proxy)
 		echo "Enable option: Use APT proxy"
