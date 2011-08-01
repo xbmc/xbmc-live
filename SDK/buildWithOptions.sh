@@ -84,6 +84,10 @@ do
                 export SDK_BUILDHOOKS="$SDK_BUILDHOOKS ./buildHook-proposed.sh"
                 shift
 		;;
+	-N|--newestlivebuild)
+		echo "Enable option: use latest live_build"
+		export SDK_USELATESTLIVEBUILD=1
+		shift
 	-p|--proxy)
 		echo "Enable option: Use APT proxy"
 		case "$2" in

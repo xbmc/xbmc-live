@@ -90,26 +90,25 @@ rsync -r -l --exclude=.git --exclude=$WORKDIR . $WORKDIR
 if ! which lb > /dev/null ; then
 	cd $WORKPATH/Tools
 	if [ ! -d live-build ]; then
-		if [ ! -f live-build.tar ]; then
-			git clone git://live.debian.net/git/live-build.git
-			if [ "$?" -ne "0" ]; then
+		repoURL="http://live.debian.net/archive/packages/live-build/orig/"
+		if [ -z "$SDK_USELATESTLIVEBUILD" ]; then
+		    latestPackage="live-build_3.0~a25.orig.tar.gz"
+		else
+		    latestPackage=$(curl -x "" -s -f $repoURL | grep live-build | tail -1 | grep -o '"live-build_[^"]*.tar.gz"' | sed -e "s/\"//g")
+		fi
+
+		if ! ls $latestPackage > /dev/null 2>&1 ; then
+			echo "Retrieving live-build tarball..."
+			echo " -  Latest package: $latestPackage"
+
+			wget -q "$repoURL$latestPackage"
+			if [ "$?" -ne "0" ] || [ ! -f $latestPackage ] ; then
+				echo "Needed package ($latestPackage) not found, exiting..."
 				exit 1
 			fi
-
-			pushd live-build > /dev/null
-			gitMinorVersion=$(git --version | cut -d" " -f3 | cut -d. -f2)
-			if [ $gitMinorVersion -eq "6" ] ; then
-			    git checkout -b debian/2.0.12-2 debian/2.0.12-2
-			else
-			    git checkout debian/2.0.12-2
-			fi
-			popd > /dev/null
-
-			# Saved, to avoid cloning for multiple builds
-			tar cf live-build.tar live-build  > /dev/null 2>&1
-		else
-			tar xf live-build.tar  > /dev/null 2>&1
 		fi
+		tar xf $latestPackage
+		mv live-build-* live-build
 	fi
 
 	LB_HOMEDIR=$WORKPATH/Tools/live-build
