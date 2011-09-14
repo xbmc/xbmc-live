@@ -24,7 +24,7 @@ SDK_BUILDHOOKS=""
 
 # getopt-parse.bash
 
-TEMP=$(getopt -o snp:ulkgih:xP --long xbmc-svn,nvidia-only,proxy:,usb-image,live-only,keep-workarea,grub2,intel-only,hook:,x-swat,proposed -- "$@")
+TEMP=$(getopt -o snp:ulkgih:xPN --long xbmc-svn,nvidia-only,proxy:,usb-image,live-only,keep-workarea,grub2,intel-only,hook:,x-swat,proposed,newestdebianlive -- "$@")
 eval set -- "$TEMP"
 
 while true
@@ -88,6 +88,7 @@ do
 		echo "Enable option: use latest debian_live files"
 		export SDK_USELATESTDEBIANLIVE=1
 		shift
+		;;
 	-p|--proxy)
 		echo "Enable option: Use APT proxy"
 		case "$2" in
