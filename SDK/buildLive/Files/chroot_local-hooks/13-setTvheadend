@@ -22,16 +22,22 @@ echo ""
 echo "Set hts_tvheadend user & web credentials..."
 echo ""
 
+#get current xbmc user
+xbmcUser=$(getent passwd 1000 | sed -e 's/\:.*//')
+
 cat > /etc/default/tvheadend << EOF
-DAEMON_ARGS="-f -u xbmc -g video"
+DAEMON_ARGS="-f -u $xbmcUser -g video"
 EOF
 
-mkdir -p /home/xbmc/.hts/tvheadend
+mkdir -p /home/$xbmcUser/.hts/tvheadend
 cat > /home/xbmc/.hts/tvheadend/superuser << EOF
 {
-"username": "xbmc",
-"password": "xbmc"
+"username": "$xbmcUser",
+"password": "$xbmcUser"
 }
 EOF
 
-chown -R xbmc:xbmc /home/xbmc/.hts
+if [ -d /home/$xbmcUser/.hts ]
+then
+    chown -R $xbmcUser:$xbmcUser /home/$xbmcUser/.hts
+fi
