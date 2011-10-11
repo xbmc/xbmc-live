@@ -52,3 +52,15 @@ Main script detailed sequence of operations (build.sh):
 6. Build any DEB/UDEB packages required for the Live build
 7. Copy any built-downloaded files into buildLive directory tree for the "real" Live build
 8. Perform Live build using live-build with the preconfigured, ad-hoc config tree
+
+
+Oneiric support TODO
+
+* Replace uxlaunch by lightdm (requires modifying xbmc-packaging)
+* Test with XBMC oneric packages.
+* Review the local hooks scripts. Some good examples can be found in /usr/share/live/build/scripts/build
+* Review packages.list
+* Fix W: Unknown package list '*.list.binary'
+* Find proper solution for lb_binary_debian-installer
+* Find solution for non-existing oneiric in /usr/share/live/build/data/debian-cd/
+
