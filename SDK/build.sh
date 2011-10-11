@@ -84,7 +84,7 @@ fi
 
 echo "Creating new workarea..."
 
-# cp all (except svn directories) into workarea
+# cp all (except git directories) into workarea
 rsync -r -l --exclude=.git --exclude=$WORKDIR . $WORKDIR
 
 if ! which lb > /dev/null ; then
@@ -116,7 +116,16 @@ if ! which lb > /dev/null ; then
 	export LB_BASE="${LB_HOMEDIR}"
 	export PATH="${PATH}:${LB_BASE}/scripts/build"
 
+	# TODO: remove symlink creation once oneiric has come with the latest build-live package
+	ln -s $LB_HOMEDIR/data/debian-cd/maverick $LB_HOMEDIR/data/debian-cd/oneiric
+
 	cd $THISDIR
+else
+	# TODO: remove symlink creation once oneiric has come with the latest build-live package
+	if [ ! -d "/usr/share/live/build/data/debian-cd/oneiric" ];
+	then
+	    ln -s /usr/share/live/build/data/debian-cd/maverick /usr/share/live/build/data/debian-cd/oneiric
+	fi
 fi
 
 echo "Start building..."

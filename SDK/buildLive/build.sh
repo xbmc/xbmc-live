@@ -21,19 +21,6 @@
 THISDIR=$(pwd)
 WORKDIR=workarea
 
-# TODO: proper required packages for debian installer inclusion when building Ubuntu
-if [ -f /usr/share/live/build/scripts/build/lb_binary_debian-installer ]
-then
-    sed -i "s/DI_REQ_PACKAGES=\"elilo lilo grub grub-pc\"/DI_REQ_PACKAGES=\"grub-pc\"/g" /usr/share/live/build/scripts/build/lb_binary_debian-installer
-    sed -i "s/DI_PACKAGES=\"\${DI_PACKAGES} busybox cryptsetup mdadm lvm2\"/DI_PACKAGES=\"\${DI_PACKAGES} cryptsetup mdadm lvm2\"/g" /usr/share/live/build/scripts/build/lb_binary_debian-installer
-fi
-
-# TODO: remove symbolic link once oneiric has come with the latest build-live package
-if [ ! -d "/usr/share/live/build/data/debian-cd/oneiric" ];
-then
-    ln -s /usr/share/live/build/data/debian-cd/maverick /usr/share/live/build/data/debian-cd/oneiric
-fi
-
 build()
 {
         lb build
