@@ -19,11 +19,11 @@ plymouth
 #plymouth-theme-ubuntu-text
 #plymouth-theme-ubuntu-logo
 parted
-#xbmc-ppa-keyring
+xbmc-ppa-keyring
 python-apt
-#xbmc-live
-#xbmc
-#plymouth-theme-xbmc-logo
+xbmc-live
+xbmc
+plymouth-theme-xbmc-logo
 fglrx fglrx-amdcccle
 nvidia-current libvdpau1
 wpasupplicant wireless-tools
