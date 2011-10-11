@@ -1,0 +1,24 @@
+#!/bin/sh
+
+export LC_ALL=C
+
+. "${LB_BASE:-/usr/share/live/build}"/scripts/build.sh
+
+Arguments "${@}"
+
+(
+	# First bootstrap and chroot before building
+	lb bootstrap "$@"
+	lb chroot "$@"
+
+	# Copy sources from Files in order to be sure Ubuntu's repo is used
+	cp Files/chroot_sources/ubuntu.chroot chroot/etc/apt/sources.list -Rf
+	cp Files/chroot_sources/xbmc.list.chroot chroot/etc/apt/xbmc.list -Rf
+
+	# Import xbmc ppa gpg file
+	apt-key --keyring chroot/etc/apt/trusted.gpg add Files/chroot_sources/xbmc.chroot.gpg
+
+	# Start building live-cd
+	lb binary "$@"
+
+) 2>&1 | tee binary.log
