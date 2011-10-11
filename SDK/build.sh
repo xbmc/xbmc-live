@@ -92,7 +92,7 @@ if ! which lb > /dev/null ; then
 	if [ ! -d live-build ]; then
 		repoURL="http://live.debian.net/archive/packages/live-build/orig/"
 		if [ -z "$SDK_USELATESTDEBIANLIVE" ]; then
-		    latestPackage="live-build_3.0~a25.orig.tar.gz"
+		    latestPackage="live-build_3.0~a35.orig.tar.gz"
 		else
 		    latestPackage=$(curl -x "" -s -f $repoURL | grep live-build | tail -1 | grep -o '"live-build_[^"]*.tar.gz"' | sed -e "s/\"//g")
 		fi
