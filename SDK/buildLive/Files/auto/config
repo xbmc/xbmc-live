@@ -1,0 +1,35 @@
+#!/bin/sh
+
+lb config noauto \
+        --archive-areas "main restricted universe multiverse" \
+        --distribution "oneiric" \
+        --architecture i386 \
+        --mirror-bootstrap "http://archive.ubuntu.com/ubuntu/" \
+        --mirror-chroot "http://archive.ubuntu.com/ubuntu/" \
+        --mirror-chroot-security "http://security.ubuntu.com/ubuntu/" \
+        --mirror-binary "http://archive.ubuntu.com/ubuntu/" \
+        --mirror-binary-security "http://security.ubuntu.com/ubuntu/" \
+        --debian-installer-distribution "oneiric" \
+	--package-lists none \
+	--mode ubuntu \
+        --cache disabled \
+        --security true \
+        --username xbmc \
+        --binary-images iso \
+        --binary-filesystem fat32 \
+        --hostname XBMCLive \
+        --iso-application XBMC_Live \
+        --iso-volume XBMC_Live \
+        --iso-publisher "http://xbmc.org" \
+        --linux-packages linux \
+	--win32-loader disabled \
+        --memtest none \
+        --tasksel none \
+        --initsystem none \
+        --debian-installer live \
+        --debian-installer-preseedfile preseed.cfg \
+        --debian-installer-gui disabled \
+        --initramfs live-boot \
+        --bootloader grub2 \
+	"${@}"
+

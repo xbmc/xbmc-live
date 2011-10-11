@@ -22,17 +22,18 @@ echo "--------------------------"
 echo "Copying live-boot files..."
 echo "--------------------------"
 
-mkdir -p $WORKPATH/buildLive/Files/chroot_local-packages &> /dev/null
+mkdir -p $WORKPATH/buildLive/Files/packages &> /dev/null
 
 if ! ls $WORKPATH/buildDEBs/live-boot*.deb > /dev/null 2>&1; then
         echo "Files missing (live-boot), exiting..."
         exit 1
 fi
-#if ! ls $WORKPATH/buildDEBs/live-config*.deb > /dev/null 2>&1; then
-#        echo "Files missing (live-config), exiting..."
-#        exit 1
-#fi
 
-cp $WORKPATH/buildDEBs/live-boot*.deb $WORKPATH/buildLive/Files/chroot_local-packages
-# cp $WORKPATH/buildDEBs/live-config*.deb $WORKPATH/buildLive/Files/chroot_local-packages
+if ! ls $WORKPATH/buildDEBs/live-config*.deb > /dev/null 2>&1; then
+        echo "Files missing (live-config), exiting..."
+        exit 1
+fi
+
+cp $WORKPATH/buildDEBs/live-boot*.deb $WORKPATH/buildLive/Files/packages
+cp $WORKPATH/buildDEBs/live-config*.deb $WORKPATH/buildLive/Files/packages
 

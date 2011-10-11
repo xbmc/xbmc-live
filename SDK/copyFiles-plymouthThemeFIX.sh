@@ -24,7 +24,7 @@ echo "--------------------------------"
 echo "Retrieving Plymouth theme...    "
 echo "--------------------------------"
 
-mkdir -p $WORKPATH/buildLive/Files/chroot_local-packages &> /dev/null
+mkdir -p $WORKPATH/buildLive/Files/packages &> /dev/null
 
 if ! ls $WORKPATH/plymouth-theme-xbmc-logo*.deb > /dev/null 2>&1; then
 	cd $WORKPATH
@@ -42,4 +42,4 @@ if ! ls $WORKPATH/plymouth-theme-xbmc-logo*.deb > /dev/null 2>&1; then
 	cd ..
 fi
 
-cp $WORKPATH/plymouth-theme-xbmc-logo*.deb $WORKPATH/buildLive/Files/chroot_local-packages
+cp $WORKPATH/plymouth-theme-xbmc-logo*.deb $WORKPATH/buildLive/Files/packages

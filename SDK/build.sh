@@ -188,5 +188,6 @@ cd $THISDIR
 
 if [ -f $WORKPATH/buildLive/binary.iso ]; then
 	mv $WORKPATH/buildLive/binary.* .
-	chmod 777 binary.*
+	chmod 777 binary*
+	echo "XBMCLive image build completed!"
 fi
