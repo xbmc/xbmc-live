@@ -12,7 +12,7 @@ Arguments "${@}"
 	lb chroot "$@"
 
 	# Copy sources from Files in order to be sure Ubuntu's repo is used
-	cp Files/chroot_sources/ubuntu.chroot chroot/etc/apt/sources.list -Rf
+	cp Files/chroot_sources/ubuntu.list.chroot chroot/etc/apt/sources.list -Rf
 	cp Files/chroot_sources/xbmc.list.chroot chroot/etc/apt/xbmc.list -Rf
 
 	# Import xbmc ppa gpg file
