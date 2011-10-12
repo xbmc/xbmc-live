@@ -23,9 +23,9 @@ THISDIR=$(pwd)
 
 if ! ls libcec*.deb > /dev/null 2>&1 ; then
 	echo "Making libcec..."
-	git clone https://github.com/Pulse-Eight/libcec.git
+	git clone git://github.com/Pulse-Eight/libcec.git
 	cd libcec
-	git checkout -b release
+	git checkout release
 	dpkg-buildpackage -rfakeroot -b -uc -us
 	cd $THISDIR
 fi
