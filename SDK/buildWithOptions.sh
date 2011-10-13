@@ -24,7 +24,7 @@ SDK_BUILDHOOKS=""
 
 # getopt-parse.bash
 
-TEMP=$(getopt -o snp:ulkgih:xPN --long xbmc-svn,nvidia-only,proxy:,usb-image,live-only,keep-workarea,grub2,intel-only,hook:,x-swat,proposed,newestdebianlive -- "$@")
+TEMP=$(getopt -o snp:ulkgih:xPNi --long xbmc-svn,nvidia-only,proxy:,usb-image,live-only,keep-workarea,grub2,intel-only,hook:,x-swat,proposed,newestdebianlive,interactive -- "$@")
 eval set -- "$TEMP"
 
 while true
@@ -87,6 +87,10 @@ do
 	-N|--newestdebianlive)
 		echo "Enable option: use latest debian_live files"
 		export SDK_USELATESTDEBIANLIVE=1
+		shift
+	-i|--interactive)
+		echo "Enable interactive mode (opens a chell in chroot after package configuring)"
+		export SDK_CHROOTSHELL=1
 		shift
 		;;
 	-p|--proxy)
