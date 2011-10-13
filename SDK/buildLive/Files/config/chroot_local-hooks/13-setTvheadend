@@ -18,23 +18,26 @@
 #  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 #  http://www.gnu.org/copyleft/gpl.html
 
-cat $WORKPATH/buildLive/auto/config | grep -v debian-installer | grep -v win32-loader > $WORKPATH/buildLive/auto/config.live
-rm $WORKPATH/buildLive/auto/config
-mv $WORKPATH/buildLive/auto/config.live $WORKPATH/buildLive/auto/config
+echo ""
+echo "Set hts_tvheadend user & web credentials..."
+echo ""
 
-rm -rf $WORKPATH/buildLive/Files/binary_local-includes/install
+#get current xbmc user
+xbmcUser=$(getent passwd 1000 | sed -e 's/\:.*//')
 
-rm $WORKPATH/copyFiles-installer.sh
+cat > /etc/default/tvheadend << EOF
+DAEMON_ARGS="-f -u $xbmcUser -g video"
+EOF
 
-rm $WORKPATH/buildDEBs/build-installer.sh
+mkdir -p /home/$xbmcUser/.hts/tvheadend
+cat > /home/$xbmcUser/.hts/tvheadend/superuser << EOF
+{
+"username": "$xbmcUser",
+"password": "$xbmcUser"
+}
+EOF
 
-# Modify menu.lst
-
-if [ -f $WORKPATH/buildLive/Files/binary_grub/menu.lst ]; then
-	  sed -i '/## BEGIN INSTALLER ##/,/## END INSTALLER ##/d' $WORKPATH/buildLive/Files/binary_grub/menu.lst
-fi
-
-# Modify grub.cfg
-if [ -f $WORKPATH/buildLive/Files/binary_grub/grub.cfg ]; then
-	  sed -i '/## BEGIN INSTALLER ##/,/## END INSTALLER ##/d' $WORKPATH/buildLive/Files/binary_grub/grub.cfg
+if [ -d /home/$xbmcUser/.hts ]
+then
+    chown -R $xbmcUser:$xbmcUser /home/$xbmcUser/.hts
 fi

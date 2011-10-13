@@ -19,7 +19,7 @@
 #  http://www.gnu.org/copyleft/gpl.html
 
 # Set the output to be an USBHDD disk image
-sed -i -e "/binary-images/s/iso/usb-hdd/" $WORKPATH/buildLive/mkConfig.sh
+sed -i -e "/binary-images/s/iso/usb-hdd/" $WORKPATH/buildLive/auto/config
 
 # We have to use syslinux in this case
-sed -i -e "/bootloader/s/grub/syslinux/" $WORKPATH/buildLive/mkConfig.sh
+sed -i -e "/bootloader/s/grub/syslinux/" $WORKPATH/buildLive/auto/config

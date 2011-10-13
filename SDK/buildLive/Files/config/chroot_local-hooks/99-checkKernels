@@ -18,23 +18,22 @@
 #  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 #  http://www.gnu.org/copyleft/gpl.html
 
-cat $WORKPATH/buildLive/auto/config | grep -v debian-installer | grep -v win32-loader > $WORKPATH/buildLive/auto/config.live
-rm $WORKPATH/buildLive/auto/config
-mv $WORKPATH/buildLive/auto/config.live $WORKPATH/buildLive/auto/config
 
-rm -rf $WORKPATH/buildLive/Files/binary_local-includes/install
-
-rm $WORKPATH/copyFiles-installer.sh
-
-rm $WORKPATH/buildDEBs/build-installer.sh
-
-# Modify menu.lst
-
-if [ -f $WORKPATH/buildLive/Files/binary_grub/menu.lst ]; then
-	  sed -i '/## BEGIN INSTALLER ##/,/## END INSTALLER ##/d' $WORKPATH/buildLive/Files/binary_grub/menu.lst
+# exit building when multiple kernel versions are found
+COUNT=`ls -1 /lib/modules | wc -l`
+if [ "$COUNT" -ne "1" ]; then
+        echo "Different kernel versions detected, exiting!"
+	false
 fi
 
-# Modify grub.cfg
-if [ -f $WORKPATH/buildLive/Files/binary_grub/grub.cfg ]; then
-	  sed -i '/## BEGIN INSTALLER ##/,/## END INSTALLER ##/d' $WORKPATH/buildLive/Files/binary_grub/grub.cfg
-fi
+# Temporary fixup for bug #556653
+# see https://bugs.launchpad.net/ubuntu/+source/nvidia-graphics-drivers/+bug/556653
+
+kernelVersion=$(ls /lib/modules)
+
+for k in $(ls /boot | grep initrd.img) ; do
+	echo $k
+	if [ ! "$k" = "initrd.img-$kernelVersion" ] ; then
+		rm /boot/$k
+	fi
+done

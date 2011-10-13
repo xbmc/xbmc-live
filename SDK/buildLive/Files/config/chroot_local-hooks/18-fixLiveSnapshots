@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #      Copyright (C) 2005-2008 Team XBMC
 #      http://www.xbmc.org
@@ -18,23 +18,19 @@
 #  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 #  http://www.gnu.org/copyleft/gpl.html
 
-cat $WORKPATH/buildLive/auto/config | grep -v debian-installer | grep -v win32-loader > $WORKPATH/buildLive/auto/config.live
-rm $WORKPATH/buildLive/auto/config
-mv $WORKPATH/buildLive/auto/config.live $WORKPATH/buildLive/auto/config
+echo ""
+echo "Fix live-snapshot..."
+echo ""
 
-rm -rf $WORKPATH/buildLive/Files/binary_local-includes/install
+#
+# A bug, fixed upstream on trunk but not on the old branch we use, prevents snapshotting to work
+# 
 
-rm $WORKPATH/copyFiles-installer.sh
+# Broken:
+# SNAP_COW=$(echo "${SNAP_RESYNC_STRING}" | sed -e 's|^/root\([^:.]*\).*$|'"${DEF_SNAP_COW}"'\1|')
 
-rm $WORKPATH/buildDEBs/build-installer.sh
+# Fixed:
+# SNAP_COW=$(echo "${SNAP_RESYNC_STRING}" | sed -e 's|^/cow\([^:.]*\).*$|'"${DEF_SNAP_COW}"'\1|')
 
-# Modify menu.lst
+sed -i -e "/SNAP_COW/s/\^\/root/\^\/cow/" /sbin/live-snapshot
 
-if [ -f $WORKPATH/buildLive/Files/binary_grub/menu.lst ]; then
-	  sed -i '/## BEGIN INSTALLER ##/,/## END INSTALLER ##/d' $WORKPATH/buildLive/Files/binary_grub/menu.lst
-fi
-
-# Modify grub.cfg
-if [ -f $WORKPATH/buildLive/Files/binary_grub/grub.cfg ]; then
-	  sed -i '/## BEGIN INSTALLER ##/,/## END INSTALLER ##/d' $WORKPATH/buildLive/Files/binary_grub/grub.cfg
-fi

@@ -18,23 +18,11 @@
 #  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 #  http://www.gnu.org/copyleft/gpl.html
 
-cat $WORKPATH/buildLive/auto/config | grep -v debian-installer | grep -v win32-loader > $WORKPATH/buildLive/auto/config.live
-rm $WORKPATH/buildLive/auto/config
-mv $WORKPATH/buildLive/auto/config.live $WORKPATH/buildLive/auto/config
+echo ""
+echo "Set lirc..."
+echo ""
 
-rm -rf $WORKPATH/buildLive/Files/binary_local-includes/install
+# TOFIX
+# does not work in chroot (?), we setup lirc by including the proper files in chroot
+# dpkg-reconfigure lirc
 
-rm $WORKPATH/copyFiles-installer.sh
-
-rm $WORKPATH/buildDEBs/build-installer.sh
-
-# Modify menu.lst
-
-if [ -f $WORKPATH/buildLive/Files/binary_grub/menu.lst ]; then
-	  sed -i '/## BEGIN INSTALLER ##/,/## END INSTALLER ##/d' $WORKPATH/buildLive/Files/binary_grub/menu.lst
-fi
-
-# Modify grub.cfg
-if [ -f $WORKPATH/buildLive/Files/binary_grub/grub.cfg ]; then
-	  sed -i '/## BEGIN INSTALLER ##/,/## END INSTALLER ##/d' $WORKPATH/buildLive/Files/binary_grub/grub.cfg
-fi

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #      Copyright (C) 2005-2008 Team XBMC
 #      http://www.xbmc.org
@@ -18,23 +18,31 @@
 #  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 #  http://www.gnu.org/copyleft/gpl.html
 
-cat $WORKPATH/buildLive/auto/config | grep -v debian-installer | grep -v win32-loader > $WORKPATH/buildLive/auto/config.live
-rm $WORKPATH/buildLive/auto/config
-mv $WORKPATH/buildLive/auto/config.live $WORKPATH/buildLive/auto/config
-
-rm -rf $WORKPATH/buildLive/Files/binary_local-includes/install
-
-rm $WORKPATH/copyFiles-installer.sh
-
-rm $WORKPATH/buildDEBs/build-installer.sh
-
-# Modify menu.lst
-
-if [ -f $WORKPATH/buildLive/Files/binary_grub/menu.lst ]; then
-	  sed -i '/## BEGIN INSTALLER ##/,/## END INSTALLER ##/d' $WORKPATH/buildLive/Files/binary_grub/menu.lst
+#check AMD GPU
+amdGpuType=$(lspci -nn | grep '0300' | grep '1002')
+if [ ! -n "$amdGpuType" ] ; then
+	exit 0
 fi
 
-# Modify grub.cfg
-if [ -f $WORKPATH/buildLive/Files/binary_grub/grub.cfg ]; then
-	  sed -i '/## BEGIN INSTALLER ##/,/## END INSTALLER ##/d' $WORKPATH/buildLive/Files/binary_grub/grub.cfg
+xbmcUser=$(getent passwd 1000 | sed -e 's/\:.*//')
+
+mkdir -p /home/$xbmcUser/.xbmc/userdata
+
+#
+# Always sync to vblank
+#
+if [ ! -f /home/$xbmcUser/.xbmc/userdata/guisettings.xml ] ; then
+	mkdir -p /home/$xbmcUser/.xbmc/userdata &> /dev/null
+	cat > /home/$xbmcUser/.xbmc/userdata/guisettings.xml << 'EOF'
+<settings>
+    <videoscreen>
+        <vsync>2</vsync>
+    </videoscreen>
+</settings>
+EOF
+	chown -R $xbmcUser:$xbmcUser /home/$xbmcUser/.xbmc
+else
+	sed -i 's#\(<vsync>\)[0-9]*\(</vsync>\)#\1'2'\2#g' /home/$xbmcUser/.xbmc/userdata/guisettings.xml
 fi
+
+chown -R $xbmcUser:$xbmcUser /home/$xbmcUser/.xbmc

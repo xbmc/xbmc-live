@@ -18,11 +18,18 @@
 #  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 #  http://www.gnu.org/copyleft/gpl.html
 
+echo ""
+echo "Set plymouth theme..."
+echo ""
 
-cat > $WORKPATH/buildLive/Files/chroot_sources/proposed.chroot << EOF
-deb http://archive.ubuntu.com/ubuntu/ oneiric-proposed main restricted universe multiverse
-EOF
+if [ -f /etc/alternatives/default.plymouth ]; then
+	if [ -f /lib/plymouth/themes/xbmc-logo/xbmc-logo.plymouth ]; then
+		echo ""
+		echo "Set default plymouth theme..."
+		echo ""
 
-cat > $WORKPATH/buildLive/Files/chroot_sources/proposed.list << EOF
-deb http://archive.ubuntu.com/ubuntu/ proposed-proposed main restricted universe multiverse
-EOF
+		update-alternatives --set default.plymouth /lib/plymouth/themes/xbmc-logo/xbmc-logo.plymouth
+
+		update-initramfs -u
+	fi
+fi
