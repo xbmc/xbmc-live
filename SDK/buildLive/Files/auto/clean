@@ -1,9 +1,0 @@
-#! /bin/sh
-set -e
-
-export LB_LINUX_FLAVOURS="none"
-lb clean noauto "$@"
-
-rm -rf config
-rm -f binary.manifest binary.manifest-desktop binary.log
-rm -f livecd.*
