@@ -1,5 +1,11 @@
 #!/bin/sh
 
+OPTS=
+
+if [ -n "$SDK_CHROOTSHELL" ]; then
+	OPTS="${OPTS:+$OPTS } --interactive shell"
+fi
+
 lb config noauto \
         --archive-areas "main restricted universe multiverse" \
         --distribution "oneiric" \
@@ -31,5 +37,5 @@ lb config noauto \
         --debian-installer-gui disabled \
         --initramfs live-boot \
         --bootloader grub2 \
-	"${@}"
+	$OPTS
 
