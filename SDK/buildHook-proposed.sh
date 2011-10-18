@@ -19,10 +19,10 @@
 #  http://www.gnu.org/copyleft/gpl.html
 
 
-cat > $WORKPATH/buildLive/Files/chroot_sources/proposed.chroot << EOF
+cat > $WORKPATH/buildLive/Files/config/chroot_sources/proposed.chroot << EOF
 deb http://archive.ubuntu.com/ubuntu/ oneiric-proposed main restricted universe multiverse
 EOF
 
-cat > $WORKPATH/buildLive/Files/chroot_sources/proposed.list << EOF
+cat > $WORKPATH/buildLive/Files/config/chroot_sources/proposed.list << EOF
 deb http://archive.ubuntu.com/ubuntu/ proposed-proposed main restricted universe multiverse
 EOF

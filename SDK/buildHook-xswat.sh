@@ -19,12 +19,12 @@
 #  http://www.gnu.org/copyleft/gpl.html
 
 
-cat > $WORKPATH/buildLive/Files/chroot_sources/x-swat.list.chroot << EOF
-deb http://ppa.launchpad.net/ubuntu-x-swat/x-updates/ubuntu natty main 
+cat > $WORKPATH/buildLive/Files/config/chroot_sources/x-swat.list.chroot << EOF
+deb http://ppa.launchpad.net/ubuntu-x-swat/x-updates/ubuntu natty main
 EOF
 
-cat > $WORKPATH/buildLive/Files/chroot_sources/x-swat.list.binary << EOF
-deb http://ppa.launchpad.net/ubuntu-x-swat/x-updates/ubuntu natty main 
+cat > $WORKPATH/buildLive/Files/config/chroot_sources/x-swat.list.binary << EOF
+deb http://ppa.launchpad.net/ubuntu-x-swat/x-updates/ubuntu natty main
 EOF
 
 if [ ! -f $WORKPATH/x-swat.key ] ; then
@@ -52,6 +52,6 @@ if [ ! -f $WORKPATH/x-swat.key ] ; then
 	rm $WORKPATH/x-swat.html
 fi
 
-cp $WORKPATH/x-swat.key $WORKPATH/buildLive/Files/chroot_sources/x-swat.binary.gpg
-cp $WORKPATH/x-swat.key $WORKPATH/buildLive/Files/chroot_sources/x-swat.chroot.gpg
+cp $WORKPATH/x-swat.key $WORKPATH/buildLive/Files/config/chroot_sources/x-swat.binary.gpg
+cp $WORKPATH/x-swat.key $WORKPATH/buildLive/Files/config/chroot_sources/x-swat.chroot.gpg
 rm $WORKPATH/x-swat.key

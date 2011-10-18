@@ -18,6 +18,6 @@
 #  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 #  http://www.gnu.org/copyleft/gpl.html
 
-rm $WORKPATH/buildLive/Files/chroot_local-hooks/00-installCrystalHD
+rm $WORKPATH/buildLive/Files/config/chroot_local-hooks/00-installCrystalHD
 
-sed -i '/fglrx/d' $WORKPATH/buildLive/Files/chroot_local-packageslists/packages.list
+sed -i '/fglrx/d' $WORKPATH/buildLive/Files/config/chroot_local-packageslists/packages.list

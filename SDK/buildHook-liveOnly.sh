@@ -22,7 +22,7 @@ cat $WORKPATH/buildLive/auto/config | grep -v debian-installer | grep -v win32-l
 rm $WORKPATH/buildLive/auto/config
 mv $WORKPATH/buildLive/auto/config.live $WORKPATH/buildLive/auto/config
 
-rm -rf $WORKPATH/buildLive/Files/binary_local-includes/install
+rm -rf $WORKPATH/buildLive/Files/config/binary_local-includes/install
 
 rm $WORKPATH/copyFiles-installer.sh
 
@@ -30,11 +30,11 @@ rm $WORKPATH/buildDEBs/build-installer.sh
 
 # Modify menu.lst
 
-if [ -f $WORKPATH/buildLive/Files/binary_grub/menu.lst ]; then
-	  sed -i '/## BEGIN INSTALLER ##/,/## END INSTALLER ##/d' $WORKPATH/buildLive/Files/binary_grub/menu.lst
+if [ -f $WORKPATH/buildLive/Files/config/binary_grub/menu.lst ]; then
+	  sed -i '/## BEGIN INSTALLER ##/,/## END INSTALLER ##/d' $WORKPATH/buildLive/Files/config/binary_grub/menu.lst
 fi
 
 # Modify grub.cfg
-if [ -f $WORKPATH/buildLive/Files/binary_grub/grub.cfg ]; then
-	  sed -i '/## BEGIN INSTALLER ##/,/## END INSTALLER ##/d' $WORKPATH/buildLive/Files/binary_grub/grub.cfg
+if [ -f $WORKPATH/buildLive/Files/config/binary_grub/grub.cfg ]; then
+	  sed -i '/## BEGIN INSTALLER ##/,/## END INSTALLER ##/d' $WORKPATH/buildLive/Files/config/binary_grub/grub.cfg
 fi
