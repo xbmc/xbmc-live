@@ -1,4 +1,0 @@
-deb http://archive.ubuntu.com/ubuntu/ oneiric main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu/ oneiric-security main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu/ oneiric-updates main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu/ oneiric-backports main restricted universe multiverse
