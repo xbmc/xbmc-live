@@ -1,4 +1,5 @@
-#! /bin/sh
+#!/bin/sh
+
 set -e
 
 rm -rf config
@@ -27,8 +28,8 @@ add_package ()
 }
 
 OPTS=
-BINARY_IMAGES=none
-BOOT_LOADER=none
+BINARY_IMAGES=iso-hybrid
+BOOT_LOADER=syslinux
 #BINARY_IMAGES=iso
 #BINARY_IMAGES=usb
 #BOOT_LOADER=syslinux
@@ -56,33 +57,38 @@ if [ -n "$SDK_CHROOTSHELL" ]; then
 fi
 
 lb config noauto \
-	--mode ubuntu \
-	--distribution oneiric \
-	--architecture i386 \
-	--parent-archive-areas "main restricted universe multiverse" \
-	--bootstrap-keyring ubuntu-keyring \
-	--binary-images "$BINARY_IMAGES" \
-	--bootloader "$BOOT_LOADER" \
-	--memtest none \
-	--source false \
-	--build-with-chroot false \
-	--package-lists none \
-	--initsystem none \
-	--initramfs live-boot \
-	--initramfs-compression lzma \
-	--security true \
-	--binary-filesystem fat32 \
-	--username xbmc \
-	--hostname XBMCLive \
-	--iso-application XBMC_Live \
-	--iso-volume XBMC_Live \
-	--iso-publisher http://xbmc.org \
-	--debian-installer false \
-	--debian-installer-preseedfile preseed.cfg \
-	--debian-installer-gui disabled \
-	--win32-loader disabled \
-	$OPTS
-
+        --archive-areas "main restricted universe multiverse" \
+        --distribution "oneiric" \
+        --architecture i386 \
+        --bootstrap-keyring ubuntu-keyring \
+        --mirror-bootstrap "http://archive.ubuntu.com/ubuntu/" \
+        --mirror-chroot "http://archive.ubuntu.com/ubuntu/" \
+        --mirror-chroot-security "http://security.ubuntu.com/ubuntu/" \
+        --mirror-binary "http://archive.ubuntu.com/ubuntu/" \
+        --mirror-binary-security "http://security.ubuntu.com/ubuntu/" \
+        --debian-installer-distribution "oneiric" \
+        --package-lists none \
+        --mode ubuntu \
+        --cache disabled \
+        --security true \
+        --username xbmc \
+        --binary-images "$BINARY_IMAGES" \
+        --binary-filesystem fat32 \
+        --hostname XBMCLive \
+        --iso-application XBMC_Live \
+        --iso-volume XBMC_Live \
+        --iso-publisher "http://xbmc.org" \
+        --linux-packages linux \
+        --win32-loader disabled \
+        --memtest none \
+        --tasks minimal \
+        --initsystem none \
+        --debian-installer false \
+        --debian-installer-preseedfile preseed.cfg \
+        --debian-installer-gui disabled \
+        --initramfs live-boot \
+        --bootloader "$BOOT_LOADER" \
+        "${@}"
 
 # Copy additional config files to config tree
 cp -R Files/config/* config
