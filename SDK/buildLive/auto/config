@@ -59,7 +59,7 @@ lb config noauto \
 	--mode ubuntu \
 	--distribution oneiric \
 	--architecture i386 \
-	--archive-areas "main restricted universe multiverse" \
+	--parent-archive-areas "main restricted universe multiverse" \
 	--bootstrap-keyring ubuntu-keyring \
 	--binary-images "$BINARY_IMAGES" \
 	--bootloader "$BOOT_LOADER" \
