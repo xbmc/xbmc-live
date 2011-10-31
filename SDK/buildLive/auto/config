@@ -68,7 +68,7 @@ lb config noauto \
 	--build-with-chroot false \
 	--package-lists none \
 	--initsystem none \
-	--initramfs casper \
+	--initramfs live-boot \
 	--initramfs-compression lzma \
 	--security true \
 	--binary-filesystem fat32 \
