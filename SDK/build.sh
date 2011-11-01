@@ -195,8 +195,8 @@ cd $THISDIR
 # Copy binary files from workarea
 #
 
-if [ -f $WORKPATH/buildLive/binary.iso ]; then
-	mv $WORKPATH/buildLive/binary.* .
-	chmod 777 binary*
-	echo "XBMCLive image build completed!"
+if [ -f $WORKPATH/buildLive/binary-hybrid.iso ] || [ -f $WORKPATH/buildLive/binary.iso ]; then
+	mv $WORKPATH/buildLive/binary*.* .
+	chmod 777 binary*.*
+	echo "XBMCLive build completed!"
 fi

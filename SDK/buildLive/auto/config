@@ -16,6 +16,7 @@ add_task ()
 		echo "$task" >> "config/task-lists/livecd-rootfs.chroot_$pass.list"
 	done
 }
+
 add_package ()
 {
 	local pass="$1"
@@ -31,19 +32,14 @@ OPTS=
 BINARY_IMAGES=iso-hybrid
 BOOT_LOADER=syslinux
 #BINARY_IMAGES=iso
-#BINARY_IMAGES=usb
+#BINARY_IMAGES=usb-hdd
+#BINARY_IMAGES=iso-hybrid
 #BOOT_LOADER=syslinux
+#BOOT_LOADER=grub2
 
 add_task install minimal standard
 
 add_package live # lupin-casper
-
-#	ubuntu-core)
-#		OPTS="${OPTS:+$OPTS }--bootstrap-flavour=minimal"
-#		OPTS="${OPTS:+$OPTS }--linux-packages=none"
-#		KERNEL_FLAVOURS=none
-#		BINARY_REMOVE_LINUX=false
-#		;;
 
 if [ -n "$APT_HTTP_PROXY" ]; then
 	OPTS="${OPTS:+$OPTS }--apt-http-proxy $APT_HTTP_PROXY"
@@ -57,37 +53,31 @@ if [ -n "$SDK_CHROOTSHELL" ]; then
 fi
 
 lb config noauto \
-        --archive-areas "main restricted universe multiverse" \
-        --distribution "oneiric" \
-        --architecture i386 \
-        --bootstrap-keyring ubuntu-keyring \
-        --mirror-bootstrap "http://archive.ubuntu.com/ubuntu/" \
-        --mirror-chroot "http://archive.ubuntu.com/ubuntu/" \
-        --mirror-chroot-security "http://security.ubuntu.com/ubuntu/" \
-        --mirror-binary "http://archive.ubuntu.com/ubuntu/" \
-        --mirror-binary-security "http://security.ubuntu.com/ubuntu/" \
-        --debian-installer-distribution "oneiric" \
-        --package-lists none \
         --mode ubuntu \
-        --cache disabled \
-        --security true \
-        --username xbmc \
+        --distribution "oneiric" \
+        --debian-installer-distribution "oneiric" \
+        --architecture i386 \
+        --archive-areas "main restricted universe multiverse" \
+        --bootstrap-keyring ubuntu-keyring \
         --binary-images "$BINARY_IMAGES" \
+        --bootloader "$BOOT_LOADER" \
+        --memtest none \
+        --package-lists none \
+        --security true \
+        --initsystem none \
+        --initramfs live-boot \
+        --initramfs-compression lzma \
+        --linux-packages linux \
         --binary-filesystem fat32 \
+        --username xbmc \
         --hostname XBMCLive \
         --iso-application XBMC_Live \
         --iso-volume XBMC_Live \
         --iso-publisher "http://xbmc.org" \
-        --linux-packages linux \
-        --win32-loader disabled \
-        --memtest none \
-        --tasks minimal \
-        --initsystem none \
         --debian-installer false \
         --debian-installer-preseedfile preseed.cfg \
         --debian-installer-gui disabled \
-        --initramfs live-boot \
-        --bootloader "$BOOT_LOADER" \
+        --win32-loader disabled \
         "${@}"
 
 # Copy additional config files to config tree
