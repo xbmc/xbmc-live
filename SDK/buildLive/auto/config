@@ -65,7 +65,7 @@ lb config noauto \
         --package-lists none \
         --security true \
         --initsystem none \
-        --initramfs live-boot \
+        --initramfs casper \
         --initramfs-compression lzma \
         --linux-packages linux \
         --binary-filesystem fat32 \
