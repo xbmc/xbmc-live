@@ -28,10 +28,10 @@ if ! ls $WORKPATH/buildDEBs/live-installer*.udeb > /dev/null 2>&1; then
 	echo "Files missing (live-installer), exiting..."
 	exit 1
 fi
-cp $WORKPATH/buildDEBs/live-installer*.udeb $WORKPATH/buildLive/Files/binary_local-udebs
+cp $WORKPATH/buildDEBs/live-installer*.udeb $WORKPATH/buildLive/Files/packages.binary
 
 if ! ls $WORKPATH/buildDEBs/xbmclive-installhelpers*.udeb > /dev/null 2>&1; then
 	echo "Files missing (xbmclive-installhelpers), exiting..."
 	exit 1
 fi
-cp $WORKPATH/buildDEBs/xbmclive-installhelpers*.udeb $WORKPATH/buildLive/Files/binary_local-udebs
+cp $WORKPATH/buildDEBs/xbmclive-installhelpers*.udeb $WORKPATH/buildLive/Files/packages.binary
