@@ -29,8 +29,8 @@ add_package ()
 }
 
 OPTS=
-BINARY_IMAGES=iso-hybrid
-BOOT_LOADER=syslinux
+BINARY_IMAGES=iso
+BOOT_LOADER=grub2
 #BINARY_IMAGES=iso
 #BINARY_IMAGES=usb-hdd
 #BINARY_IMAGES=iso-hybrid
@@ -65,7 +65,7 @@ lb config noauto \
         --package-lists none \
         --security true \
         --initsystem none \
-        --initramfs casper \
+        --initramfs live-boot \
         --initramfs-compression lzma \
         --linux-packages linux \
         --binary-filesystem fat32 \
