@@ -37,9 +37,3 @@ for k in $(ls /boot | grep initrd.img) ; do
 		rm /boot/$k
 	fi
 done
-
-#rename initrd and vmlinuz with kernel versions attached
-if [ -f binary/live/initrd.img-$kernelVersion ];then
-  mv binary/live/initrd.img-$kernelVersion binary/live/initrd.img
-  mv binary/live/vmlinuz-$kernelVersion binary/live/vmlinuz
-fi
