@@ -22,7 +22,7 @@ echo "--------------------------"
 echo "Copying installer files..."
 echo "--------------------------"
 
-mkdir -p $WORKPATH/buildLive/Files/binary_local-udebs &> /dev/null
+mkdir -p $WORKPATH/buildLive/Files/packages.binary &> /dev/null
 
 if ! ls $WORKPATH/buildDEBs/live-installer*.udeb > /dev/null 2>&1; then
 	echo "Files missing (live-installer), exiting..."
