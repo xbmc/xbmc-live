@@ -92,7 +92,7 @@ if ! which lb > /dev/null ; then
 	if [ ! -d live-build ]; then
 		repoURL="http://live.debian.net/archive/packages/live-build/orig/"
 		if [ -z "$SDK_USELATESTDEBIANLIVE" ]; then
-		    latestPackage="live-build_3.0~a35.orig.tar.gz"
+		    latestPackage="live-build_3.0~a38.orig.tar.gz"
 		else
 		    latestPackage=$(curl -x "" -s -f $repoURL | grep live-build | tail -1 | grep -o '"live-build_[^"]*.tar.gz"' | sed -e "s/\"//g")
 		fi
@@ -116,16 +116,7 @@ if ! which lb > /dev/null ; then
 	export LB_BASE="${LB_HOMEDIR}"
 	export PATH="${PATH}:${LB_BASE}/scripts/build"
 
-	# TODO: remove symlink creation once oneiric has come with the latest build-live package
-	ln -s $LB_HOMEDIR/data/debian-cd/maverick $LB_HOMEDIR/data/debian-cd/oneiric
-
 	cd $THISDIR
-else
-	# TODO: remove symlink creation once oneiric has come with the latest build-live package
-	if [ ! -d "/usr/share/live/build/data/debian-cd/oneiric" ];
-	then
-	    ln -s /usr/share/live/build/data/debian-cd/maverick /usr/share/live/build/data/debian-cd/oneiric
-	fi
 fi
 
 echo "Start building..."
