@@ -55,7 +55,6 @@ fi
 lb config noauto \
         --mode ubuntu \
         --distribution "oneiric" \
-        --debian-installer-distribution "oneiric" \
         --architecture i386 \
         --archive-areas "main restricted universe multiverse" \
         --bootstrap-keyring ubuntu-keyring \
@@ -74,8 +73,9 @@ lb config noauto \
         --iso-application XBMC_Live \
         --iso-volume XBMC_Live \
         --iso-publisher "http://xbmc.org" \
-        --debian-installer false \
+        --debian-installer true \
         --debian-installer-preseedfile preseed.cfg \
+        --debian-installer-distribution "oneiric" \
         --debian-installer-gui disabled \
         --win32-loader disabled \
         "${@}"
