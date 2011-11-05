@@ -19,7 +19,13 @@
 #  http://www.gnu.org/copyleft/gpl.html
 
 # Set the output to be an USBHDD disk image
-sed -i -e "/binary-images/s/iso/usb-hdd/" $WORKPATH/buildLive/auto/config
+sed -i "s/BINARY_IMAGES=iso/BINARY_IMAGES=usb-hdd/g" $WORKPATH/buildLive/auto/config
 
 # We have to use syslinux in this case
-sed -i -e "/bootloader/s/grub/syslinux/" $WORKPATH/buildLive/auto/config
+sed -i "s/BOOT_LOADER=grub/BOOT_LOADER=syslinux/g" $WORKPATH/buildLive/auto/config
+
+# We need casper in this case
+sed -i "s/INITRAMFS=live-boot/INITRAMFS=casper/g" $WORKPATH/buildLive/auto/config
+
+# We need gzip compression in this case
+sed -i "s/INITRAMFS_COMPRESSION=lzma/INITRAMFS_COMPRESSION=gzip/g" $WORKPATH/buildLive/auto/config

@@ -31,11 +31,8 @@ add_package ()
 OPTS=
 BINARY_IMAGES=iso
 BOOT_LOADER=grub2
-#BINARY_IMAGES=iso
-#BINARY_IMAGES=usb-hdd
-#BINARY_IMAGES=iso-hybrid
-#BOOT_LOADER=syslinux
-#BOOT_LOADER=grub2
+INITRAMFS=live-boot
+INITRAMFS_COMPRESSION=lzma
 
 add_task install minimal standard
 
@@ -64,8 +61,8 @@ lb config noauto \
         --package-lists none \
         --security true \
         --initsystem none \
-        --initramfs live-boot \
-        --initramfs-compression lzma \
+        --initramfs "$INITRAMFS" \
+        --initramfs-compression "$INITRAMFS_COMPRESSION" \
         --linux-packages linux \
         --binary-filesystem fat32 \
         --username xbmc \
