@@ -18,5 +18,14 @@
 #  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 #  http://www.gnu.org/copyleft/gpl.html
 
-mv binary/live/initrd.img-* binary/live/initrd.img
-mv binary/live/vmlinuz-* binary/live/vmlinuz
+set -e
+
+if [ -d binary/live/ ]; then
+  mv binary/live/initrd.img-* binary/live/initrd.img || true
+  mv binary/live/vmlinuz-* binary/live/vmlinuz || true
+fi
+
+if [ -d binary/casper/ ]; then
+  mv binary/casper/initrd.img-* binary/casper/initrd.img || true
+  mv binary/casper/vmlinuz-* binary/casper/vmlinuz || true
+fi
