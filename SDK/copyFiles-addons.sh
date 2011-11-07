@@ -25,7 +25,7 @@ echo "--------------------------"
 repoURL="http://mirrors.xbmc.org/addons/dharma/"
 ADDONSLIST=(script.bootable.disk.wizard script.rss.editor script.xbmc.audio.mixer)
 
-mkdir -p $WORKPATH/buildLive/Files/chroot_local-includes/usr/share/xbmc/addons &> /dev/null
+mkdir -p $WORKPATH/buildLive/Files/includes.chroot/usr/share/xbmc/addons &> /dev/null
 
 cd $WORKPATH
 
@@ -42,5 +42,5 @@ for k in "${ADDONSLIST[@]}" ; do
 		    exit 1
 	    fi
 	fi
-	unzip -q $latestPackage -d $WORKPATH/buildLive/Files/chroot_local-includes/usr/share/xbmc/addons
+	unzip -q $latestPackage -d $WORKPATH/buildLive/Files/includes.chroot//usr/share/xbmc/addons
 done
