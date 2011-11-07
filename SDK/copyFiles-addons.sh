@@ -22,7 +22,7 @@ echo "--------------------------"
 echo "Retrieving addons...      "
 echo "--------------------------"
 
-repoURL="http://mirrors.xbmc.org/addons/dharma/"
+repoURL="http://mirrors.xbmc.org/addons/eden-pre/"
 ADDONSLIST=(script.bootable.disk.wizard script.rss.editor script.xbmc.audio.mixer)
 
 mkdir -p $WORKPATH/buildLive/Files/includes.chroot/usr/share/xbmc/addons &> /dev/null
