@@ -18,6 +18,15 @@
 #  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 #  http://www.gnu.org/copyleft/gpl.html
 
+cat $WORKPATH/buildLive/auto/config | grep -v debian-installer | grep -v win32-loader | grep -v iso- > $WORKPATH/buildLive/auto/config.live
+
+rm -rf $WORKPATH/buildDEBs/build-installer.sh
+rm -rf $WORKPATH/buildDEBs/build-live-boot.sh
+rm -rf $WORKPATH/buildDEBs/build-live-config.sh
+
+rm -rf $WORKPATH/copyFiles-installer.sh
+rm -rf $WORKPATH/copyFiles-liveBoot.sh
+
 # Set the output to be an USBHDD disk image
 sed -i "s/BINARY_IMAGES=iso/BINARY_IMAGES=usb-hdd/g" $WORKPATH/buildLive/auto/config
 
