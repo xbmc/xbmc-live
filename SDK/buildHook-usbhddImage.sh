@@ -19,6 +19,8 @@
 #  http://www.gnu.org/copyleft/gpl.html
 
 cat $WORKPATH/buildLive/auto/config | grep -v debian-installer | grep -v win32-loader | grep -v iso- > $WORKPATH/buildLive/auto/config.live
+rm $WORKPATH/buildLive/auto/config
+mv $WORKPATH/buildLive/auto/config.live $WORKPATH/buildLive/auto/config
 
 rm -rf $WORKPATH/buildDEBs/build-installer.sh
 rm -rf $WORKPATH/buildDEBs/build-live-boot.sh
