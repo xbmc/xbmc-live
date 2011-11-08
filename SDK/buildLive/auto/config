@@ -33,6 +33,7 @@ BINARY_IMAGES=iso
 BOOT_LOADER=grub2
 INITRAMFS=live-boot
 INITRAMFS_COMPRESSION=lzma
+INSTALLER=true
 
 add_task install minimal standard
 
@@ -70,7 +71,7 @@ lb config noauto \
         --iso-application XBMC_Live \
         --iso-volume XBMC_Live \
         --iso-publisher "http://xbmc.org" \
-        --debian-installer true \
+        --debian-installer "$INSTALLER" \
         --debian-installer-preseedfile preseed.cfg \
         --debian-installer-distribution "oneiric" \
         --debian-installer-gui disabled \
