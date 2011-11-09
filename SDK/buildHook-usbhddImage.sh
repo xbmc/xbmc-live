@@ -48,6 +48,8 @@ rm -rf $WORKPATH/buildLive/Files/config/binary_grub/
 THISDIR=$(pwd)
 mkdir -p $WORKPATH/buildLive/Files/config/includes.chroot/usr/share/syslinux/themes/ubuntu-oneiric/isolinux-live
 cd $WORKPATH/buildLive/Files/config/includes.chroot/usr/share/syslinux/themes/ubuntu-oneiric/
-sudo ln -s isolinux-live syslinux-live
+ln -s isolinux-live syslinux-live
+cd isolinux-live
+ln -s isolinux.cfg syslinux.cfg
 rm -rf $WORKPATH/buildLive/Files/config/includes.chroot/usr/share/syslinux/themes/ubuntu-oneiric/isolinux-live
 cd $THISDIR
