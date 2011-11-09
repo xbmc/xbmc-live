@@ -42,10 +42,12 @@ sed -i "s/INSTALLER=true/INSTALLER=false/g" $WORKPATH/buildLive/auto/config
 
 # No grub
 sed -i "s/grub-pc/#grub-pc/g" $WORKPATH/buildLive/Files/config/package-lists/packages.list.chroot
+rm -rf $WORKPATH/buildLive/Files/config/binary_grub/
 
 #workaround for Bug#622838 syslinux-live
 THISDIR=$(pwd)
 mkdir -p $WORKPATH/buildLive/Files/config/includes.chroot/usr/share/syslinux/themes/ubuntu-oneiric/isolinux-live
-cd $WORKPATH/buildLive/Files/config/includes.chroot/usr/share/syslinux/themes/ubuntu-oneiric/isolinux-live
+cd $WORKPATH/buildLive/Files/config/includes.chroot/usr/share/syslinux/themes/ubuntu-oneiric/
 sudo ln -s isolinux-live syslinux-live
+rm -rf $WORKPATH/buildLive/Files/config/includes.chroot/usr/share/syslinux/themes/ubuntu-oneiric/isolinux-live
 cd $THISDIR
