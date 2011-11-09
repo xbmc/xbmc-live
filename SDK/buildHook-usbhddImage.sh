@@ -44,12 +44,14 @@ sed -i "s/INSTALLER=true/INSTALLER=false/g" $WORKPATH/buildLive/auto/config
 sed -i "s/grub-pc/#grub-pc/g" $WORKPATH/buildLive/Files/config/package-lists/packages.list.chroot
 rm -rf $WORKPATH/buildLive/Files/config/binary_grub/
 
+#set ubuntu syslinux-theme
+#sed -i "s/OPTS=/OPTS=--syslinux-theme \"ubuntu\"/g" $WORKPATH/buildLive/auto/config
+
 #workaround for Bug#622838 syslinux-live
 THISDIR=$(pwd)
 mkdir -p $WORKPATH/buildLive/Files/config/includes.chroot/usr/share/syslinux/themes/ubuntu-oneiric/isolinux-live
 cd $WORKPATH/buildLive/Files/config/includes.chroot/usr/share/syslinux/themes/ubuntu-oneiric/
 ln -s isolinux-live syslinux-live
-cd isolinux-live
-ln -s isolinux.cfg syslinux.cfg
-rm -rf $WORKPATH/buildLive/Files/config/includes.chroot/usr/share/syslinux/themes/ubuntu-oneiric/isolinux-live
+#cd isolinux-live
+#ln -s isolinux.cfg syslinux.cfg
 cd $THISDIR

@@ -76,7 +76,7 @@ lb config noauto \
         --debian-installer-distribution "oneiric" \
         --debian-installer-gui disabled \
         --win32-loader disabled \
-        "${@}"
+        "$OPTS"
 
 # Copy additional config files to config tree
 cp -R Files/config/* config
