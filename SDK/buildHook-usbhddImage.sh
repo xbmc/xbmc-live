@@ -34,9 +34,6 @@ sed -i "s/BOOT_LOADER=grub2/BOOT_LOADER=syslinux/g" $WORKPATH/buildLive/auto/con
 # We need casper in this case
 sed -i "s/INITRAMFS=live-boot/INITRAMFS=casper/g" $WORKPATH/buildLive/auto/config
 
-# We need gzip compression in this case
-sed -i "s/INITRAMFS_COMPRESSION=lzma/INITRAMFS_COMPRESSION=lzma/g" $WORKPATH/buildLive/auto/config
-
 # No installer
 sed -i "s/INSTALLER=true/INSTALLER=false/g" $WORKPATH/buildLive/auto/config
 
@@ -44,14 +41,9 @@ sed -i "s/INSTALLER=true/INSTALLER=false/g" $WORKPATH/buildLive/auto/config
 sed -i "s/grub-pc/#grub-pc/g" $WORKPATH/buildLive/Files/config/package-lists/packages.list.chroot
 rm -rf $WORKPATH/buildLive/Files/config/binary_grub/
 
-#set ubuntu syslinux-theme
-#sed -i "s/OPTS=/OPTS=--syslinux-theme \"ubuntu\"/g" $WORKPATH/buildLive/auto/config
-
 #workaround for Bug#622838 syslinux-live
 THISDIR=$(pwd)
 mkdir -p $WORKPATH/buildLive/Files/config/includes.chroot/usr/share/syslinux/themes/ubuntu-oneiric/isolinux-live
 cd $WORKPATH/buildLive/Files/config/includes.chroot/usr/share/syslinux/themes/ubuntu-oneiric/
 ln -s isolinux-live syslinux-live
-#cd isolinux-live
-#ln -s isolinux.cfg syslinux.cfg
 cd $THISDIR
