@@ -95,7 +95,7 @@ do
 		shift
 		;;
 	-i|--interactive)
-		echo "Enable interactive mode (opens a chell in chroot after package configuring)"
+		echo "Enable option: Interactive mode (opens a chell in chroot after package configuring)"
 		export SDK_CHROOTSHELL=1
 		shift
 		;;
