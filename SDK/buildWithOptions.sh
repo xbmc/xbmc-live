@@ -24,7 +24,7 @@ SDK_BUILDHOOKS=""
 
 # getopt-parse.bash
 
-TEMP=$(getopt -o snp:ulkgih:xPNi --long xbmc-svn,nvidia-only,proxy:,usb-image,live-only,keep-workarea,grub2,intel-only,hook:,x-swat,proposed,newestdebianlive,interactive -- "$@")
+TEMP=$(getopt -o snp:ulkgihy:xPNi --long xbmc-svn,nvidia-only,proxy:,usb-image,hybrid,live-only,keep-workarea,grub2,intel-only,hook:,x-swat,proposed,newestdebianlive,interactive -- "$@")
 eval set -- "$TEMP"
 
 while true
@@ -43,6 +43,11 @@ do
 	-u|--usb-image)
 		echo "Enable option: Generate USBHDD disk image"
 		export SDK_BUILDHOOKS="$SDK_BUILDHOOKS ./buildHook-usbhddImage.sh"
+		shift
+		;;
+	-y|--hybrid)
+		echo "Enable option: Generate Hybrid disk image"
+		export SDK_BUILDHOOKS="$SDK_BUILDHOOKS ./buildHook-HybridImage.sh"
 		shift
 		;;
 	-l|--live-only)
@@ -90,7 +95,7 @@ do
 		shift
 		;;
 	-i|--interactive)
-		echo "Enable option: interactive mode (opens a chell in chroot after package configuring)"
+		echo "Enable interactive mode (opens a chell in chroot after package configuring)"
 		export SDK_CHROOTSHELL=1
 		shift
 		;;
