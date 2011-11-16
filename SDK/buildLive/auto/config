@@ -17,17 +17,6 @@ add_task ()
 	done
 }
 
-add_package ()
-{
-	local pass="$1"
-	shift
-	local pkg
-
-	for pkg; do
-		echo "$pkg" >> "config/package-lists/livecd-rootfs.chroot_$pass.list"
-	done
-}
-
 OPTS=
 BINARY_IMAGES=iso
 BOOT_LOADER=grub2
@@ -36,8 +25,6 @@ INITRAMFS_COMPRESSION=lzma
 INSTALLER=true
 
 add_task install minimal standard
-
-add_package live # lupin-casper
 
 if [ -n "$APT_HTTP_PROXY" ]; then
 	OPTS="${OPTS:+$OPTS }--apt-http-proxy $APT_HTTP_PROXY"

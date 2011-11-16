@@ -19,8 +19,8 @@
 #  http://www.gnu.org/copyleft/gpl.html
 
 INITRAMFS=casper
-BOOT_LOADER=grub2
-BINARY_IMAGES=iso
+BOOT_LOADER=syslinux
+BINARY_IMAGES=iso-hybrid
 
 if [ "$INITRAMFS" = "casper" ] ; then
 
@@ -57,6 +57,9 @@ if [ "$BINARY_IMAGES" = "iso-hybrid" ] ; then
       # No grub
       sed -i "s/grub-pc/#grub-pc/g" $WORKPATH/buildLive/Files/config/package-lists/packages.list.chroot
       rm -rf $WORKPATH/buildLive/Files/config/binary_grub/
+
+      # Add jasper to package list
+      echo "live jasper" >> $WORKPATH/buildLive/Files/config/package-lists/packages.list.chroot
    fi
 fi
 
