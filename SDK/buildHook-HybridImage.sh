@@ -23,7 +23,6 @@ BOOT_LOADER=syslinux
 BINARY_IMAGES=iso-hybrid
 
 if [ "$INITRAMFS" = "casper" ] ; then
-
    echo "Using casper initramfs system"
 
    rm -rf $WORKPATH/buildDEBs/build-installer.sh
@@ -42,46 +41,40 @@ if [ "$INITRAMFS" = "casper" ] ; then
    sed -i "s/\/live\//\/casper\//g" $WORKPATH/buildLive/Files/config/binary_grub/grub.cfg
    sed -i "s/boot=live/boot=casper/g" $WORKPATH/buildLive/Files/config/binary_grub/grub.cfg
 
-fi
-
-if [ "$BINARY_IMAGES" = "iso-hybrid" ] ; then
-
-   # Set the output to be an Hybrid iso disk image
-   sed -i "s/BINARY_IMAGES=iso/BINARY_IMAGES=iso-hybrid/g" $WORKPATH/buildLive/auto/config
-
    if [ "$BOOT_LOADER" = "syslinux" ] ; then
 
-      # We have to use syslinux in this case
-      sed -i "s/BOOT_LOADER=grub2/BOOT_LOADER=syslinux/g" $WORKPATH/buildLive/auto/config
-
-      # No grub
-      sed -i "s/grub-pc/#grub-pc/g" $WORKPATH/buildLive/Files/config/package-lists/packages.list.chroot
-      rm -rf $WORKPATH/buildLive/Files/config/binary_grub/
-
-      # Add jasper to package list
+      # Add live & jasper to package list
       echo "live jasper" >> $WORKPATH/buildLive/Files/config/package-lists/packages.list.chroot
    fi
 fi
 
-if [ "$BINARY_IMAGES" = "hdd" ] ; then
+if [ "$BINARY_IMAGES" = "iso-hybrid" ] ; then
+   echo "Using hybrid system"
+   # Set the output to be an Hybrid iso disk image
+   sed -i "s/BINARY_IMAGES=iso/BINARY_IMAGES=iso-hybrid/g" $WORKPATH/buildLive/auto/config
+fi
 
-   if [ "$BOOT_LOADER" ~ "grub" ] ; then
-      echo "This combination won't work"
+if [ "$BINARY_IMAGES" = "hdd" ] ; then
+   echo "Using hhd image system"
+   if [ "$BOOT_LOADER" = "grub" ] || [ "$BOOT_LOADER" = "grub2" ] ; then
+      echo "The combination hdd and grub is not allowed"
       exit 0
    fi
 
    # Set the output to be an USBHDD disk image
    sed -i "s/BINARY_IMAGES=iso/BINARY_IMAGES=hdd/g" $WORKPATH/buildLive/auto/config
+fi
 
-   if [ "$BOOT_LOADER" = "syslinux" ] ; then
+if [ "$BOOT_LOADER" = "syslinux" ] ; then
+   echo "Using syslinux bootloader"
+   # We have to use syslinux in this case
+   sed -i "s/BOOT_LOADER=grub2/BOOT_LOADER=syslinux/g" $WORKPATH/buildLive/auto/config
 
-      # We have to use syslinux in this case
-      sed -i "s/BOOT_LOADER=grub2/BOOT_LOADER=syslinux/g" $WORKPATH/buildLive/auto/config
+   # No grub
+   sed -i "s/grub-pc/#grub-pc/g" $WORKPATH/buildLive/Files/config/package-lists/packages.list.chroot
+   rm -rf $WORKPATH/buildLive/Files/config/binary_grub/
 
-      # No grub
-      sed -i "s/grub-pc/#grub-pc/g" $WORKPATH/buildLive/Files/config/package-lists/packages.list.chroot
-      rm -rf $WORKPATH/buildLive/Files/config/binary_grub/
-
+   if [ "$BINARY_IMAGES" = "hdd" ] ; then
       #workaround for Bug#622838 syslinux-live and hdd images
       THISDIR=$(pwd)
       mkdir -p $WORKPATH/buildLive/Files/config/includes.chroot/usr/share/syslinux/themes/ubuntu-oneiric/isolinux-live
@@ -90,6 +83,5 @@ if [ "$BINARY_IMAGES" = "hdd" ] ; then
       cd isolinux-live
       ln -s isolinux.cfg syslinux.cfg
       cd $THISDIR
-
    fi
 fi
