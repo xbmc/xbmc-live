@@ -30,4 +30,9 @@ wpasupplicant wireless-tools
 avahi-daemon
 libva1 libva-x11-1
 xvba-va-driver
+libshairport0
+libnfs0
+rtmpdump
+afpfs-ng
 libcec
+
