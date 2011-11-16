@@ -29,5 +29,5 @@ nvidia-current libvdpau1
 wpasupplicant wireless-tools
 avahi-daemon
 libva1 libva-x11-1
-#xvba-va-driver
+xvba-va-driver
 libcec
